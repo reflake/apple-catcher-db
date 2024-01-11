@@ -17,6 +17,8 @@ namespace Tests.LeaderboardController
 		{
 			_factory = new LeaderboardControllerApiFactory();
 			_client = _factory.CreateClient();
+
+			await _factory.InitializeDatabaseAsync();
 		}
 
 		[TearDown]
@@ -24,11 +26,12 @@ namespace Tests.LeaderboardController
 		{
 			_client.Dispose();
 			
+			await _factory.DisposeDatabaseAsync();
 			await _factory.DisposeAsync();
 		}
 
 		[Test]
-		public async Task HelloWorld()
+		public async Task PostLeaderboardEntry()
 		{
 			var content = JsonContent.Create(new LeaderboardEntry(0, 200, "Skooma", new DateTime()));
 			var response = await _client.PostAsync("Leaderboard", content);
