@@ -1,5 +1,5 @@
 using System.Data.Common;
-using ball_catcher_db;
+using Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;

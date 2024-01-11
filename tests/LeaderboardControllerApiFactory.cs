@@ -1,15 +1,11 @@
-﻿using System;
-using System.Data.Common;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
-using ball_catcher_db;
-using DotNet.Testcontainers.Builders;
+using Database;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
 using Testcontainers.PostgreSql;
 

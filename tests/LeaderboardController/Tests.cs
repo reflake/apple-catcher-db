@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Leaderboard.Responses;
 using Entities;
 
 namespace Tests.LeaderboardController
@@ -38,9 +39,9 @@ namespace Tests.LeaderboardController
 
 			response.EnsureSuccessStatusCode();
 
-			var entryIdAsString = await response.Content.ReadAsStringAsync();
-			
-			Assert.True(int.TryParse(entryIdAsString, out int _));
+			var putResponse = await response.Content.ReadFromJsonAsync<PutResponse>();
+
+			Assert.AreEqual(putResponse.Id, 1);
 		}
 	}
 }

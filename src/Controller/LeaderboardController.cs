@@ -1,8 +1,10 @@
 ﻿using System.Threading.Tasks;
+using Database;
+using Leaderboard.Responses;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ball_catcher_db
+namespace Leaderboard
 {
 	[ApiController]
 	[Route("[controller]")]
@@ -19,9 +21,10 @@ namespace ball_catcher_db
 		public async Task<IActionResult> PostLeaderboardEntry(LeaderboardEntry entry)
 		{
 			var result = await _dbContext.LeaderboardEntries.AddAsync(entry);
+			
 			await _dbContext.SaveChangesAsync();
 
-			return Ok(result.Entity.Id);
+			return Ok(new PutResponse(result.Entity.Id));
 		}
 	}
 }

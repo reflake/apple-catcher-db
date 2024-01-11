@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ball_catcher_db
+namespace Database
 {
 	public class AppDbContext : IdentityDbContext
 	{
