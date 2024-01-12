@@ -22,15 +22,13 @@ namespace Leaderboard
 		[HttpGet("{id:int}")]
 		public async Task<IActionResult> GetLeaderboardEntry(int id)
 		{
-			var entry = _dbContext.LeaderboardEntries.Find(id);
+			var entry = await _dbContext.LeaderboardEntries.FindAsync(id);
 
 			return Ok(new GetResponse<TEntry> { Entry = entry });
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> GetLeaderboardEntries(
-			[FromQuery(Name = "count")] int count,
-			[FromQuery(Name = "page")]  int page)
+		public async Task<IActionResult> GetLeaderboardEntries([FromQuery] int count, [FromQuery] int page)
 		{
 			var entries = await _dbContext.LeaderboardEntries
 				.OrderByDescending(e => e.Scores)
