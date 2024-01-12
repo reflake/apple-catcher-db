@@ -19,6 +19,14 @@ namespace Leaderboard
 			_dbContext = dbContext;
 		}
 
+		[HttpGet("{id:int}")]
+		public async Task<IActionResult> GetLeaderboardEntry(int id)
+		{
+			var entry = _dbContext.LeaderboardEntries.Find(id);
+
+			return Ok(new GetResponse<TEntry> { Entry = entry });
+		}
+
 		[HttpGet]
 		public async Task<IActionResult> GetLeaderboardEntries(
 			[FromQuery(Name = "count")] int count,
@@ -30,7 +38,7 @@ namespace Leaderboard
 				.Take(count)
 				.ToArrayAsync();
 
-			return Ok(new GetResponse<TEntry>(entries));
+			return Ok(new GetResponse<TEntry> {Entries = entries});
 		}
 
 		[HttpPost]
