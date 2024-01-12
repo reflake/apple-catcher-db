@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Database;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Tests.BaseLeaderboardController
 {
@@ -38,5 +39,12 @@ namespace Tests.BaseLeaderboardController
 			return entry;
 		}
 
+		protected ContextProvider<TestLeaderboardEntry> GetContextProvider()
+		{
+			var scope = _factory.Services.CreateScope();
+			var context = scope.ServiceProvider.GetRequiredService<AppDbContext<TestLeaderboardEntry>>();
+
+			return new ContextProvider<TestLeaderboardEntry>(scope, context);
+		}
 	}
 }

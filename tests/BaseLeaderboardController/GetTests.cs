@@ -13,9 +13,9 @@ namespace Tests.BaseLeaderboardController
 		[Test]
 		public async Task Client_Should_Get_Leaderboard_entries()
 		{
-			using (var scope = _factory.Services.CreateScope())
+			using (var contextProvider = GetContextProvider())
 			{
-				var context = scope.ServiceProvider.GetRequiredService<AppDbContext<TestLeaderboardEntry>>();
+				var context = contextProvider.Context;
 				
 				var user1 = await PushEntryAsync(context, 20, 1100);
 				var user2 = await PushEntryAsync(context, 57, 1200);

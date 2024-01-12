@@ -24,9 +24,9 @@ namespace Tests.BaseLeaderboardController
 		[Test]
 		public async Task Client_Shouldnt_Post_Entry_with_low_score()
 		{
-			using (var scope = _factory.Services.CreateScope())
+			using (var contextProvider = GetContextProvider())
 			{
-				var context = scope.ServiceProvider.GetRequiredService<AppDbContext<TestLeaderboardEntry>>();
+				var context = contextProvider.Context;
 
 				PushEntryAsync(context, 50, 1);
 
