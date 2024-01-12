@@ -1,9 +1,14 @@
-﻿namespace Leaderboard.Responses
+﻿using System.Text.Json.Serialization;
+
+namespace Leaderboard.Responses
 {
 	public record PostResponse
 	{
-		public int? Id { get; set; }
 		public bool Faulted { get; set; } = false;
+		
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+		public int? Id { get; set; }
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 		public string? ErrorMessage { get; set; }
 	}
 }

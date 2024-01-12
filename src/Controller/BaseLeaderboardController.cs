@@ -63,6 +63,6 @@ namespace Leaderboard
 			{
 				Id = result.Entity.Id
 			} );
-	}
+		}
 	}
 }
