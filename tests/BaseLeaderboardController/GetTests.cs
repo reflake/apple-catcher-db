@@ -45,9 +45,9 @@ namespace Tests.BaseLeaderboardController
 			using (var contextProvider = GetContextProvider())
 			{
 				var context = contextProvider.Context;
-				var expectedEntry = await PushEntryAsync(context, 33, 1);
+				var expectedEntry = await PushEntryAsync(context, 33, 500);
 
-				var response = await _client.GetAsync($"BaseLeaderboard/{1}");
+				var response = await _client.GetAsync($"BaseLeaderboard/{expectedEntry.Id}");
 				var data = await response.Content.ReadFromJsonAsync<GetResponse<TestLeaderboardEntry>>();
 				var actualEntry = data.Entry;
 				
