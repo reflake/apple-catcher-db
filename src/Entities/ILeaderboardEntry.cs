@@ -4,5 +4,6 @@
 	{
 		int Id { get; }
 		int Scores { get; }
+		int UserId { get; }
 	}
 }

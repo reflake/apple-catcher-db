@@ -34,13 +34,35 @@ namespace Leaderboard
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> PostLeaderboardEntry(TEntry entry)
+		public async Task<IActionResult> PostLeaderboardEntry(TEntry newEntry)
 		{
-			var result = await _dbContext.LeaderboardEntries.AddAsync(entry);
-			
+			// Take a look if there's already entry of same user with higher score
+			if (await _dbContext.LeaderboardEntries.AnyAsync(dbEntry => dbEntry.UserId == newEntry.UserId))
+			{
+				var highestScoreEntry =
+					await _dbContext.LeaderboardEntries
+						.Where(dbEntry => dbEntry.UserId == newEntry.UserId)
+						.Select(dbEntry => dbEntry.Scores)
+						.MaxAsync();
+
+				if (newEntry.Scores <= highestScoreEntry)
+				{
+					return Ok(new PutResponse
+					{
+						Faulted = true,
+						ErrorMessage = "Posted score is lower than the highest posted score by user"
+					});
+				}
+			}
+
+			var result = await _dbContext.LeaderboardEntries.AddAsync(newEntry);
+
 			await _dbContext.SaveChangesAsync();
 
-			return Ok( new PutResponse { Id = result.Entity.Id } );
-		}
+			return Ok(new PutResponse
+			{
+				Id = result.Entity.Id
+			} );
+	}
 	}
 }
