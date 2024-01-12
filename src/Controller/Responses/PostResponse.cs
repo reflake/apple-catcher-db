@@ -1,6 +1,6 @@
 ﻿namespace Leaderboard.Responses
 {
-	public record PutResponse
+	public record PostResponse
 	{
 		public int? Id { get; set; }
 		public bool Faulted { get; set; } = false;

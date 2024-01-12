@@ -47,7 +47,7 @@ namespace Leaderboard
 
 				if (newEntry.Scores <= highestScoreEntry)
 				{
-					return Ok(new PutResponse
+					return Ok(new PostResponse
 					{
 						Faulted = true,
 						ErrorMessage = "Posted score is lower than the highest posted score by user"
@@ -59,7 +59,7 @@ namespace Leaderboard
 
 			await _dbContext.SaveChangesAsync();
 
-			return Ok(new PutResponse
+			return Ok(new PostResponse
 			{
 				Id = result.Entity.Id
 			} );

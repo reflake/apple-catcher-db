@@ -16,7 +16,7 @@ namespace Tests.BaseLeaderboardController
 
 			response.EnsureSuccessStatusCode();
 
-			var putResponse = await response.Content.ReadFromJsonAsync<PutResponse>();
+			var putResponse = await response.Content.ReadFromJsonAsync<PostResponse>();
 
 			Assert.AreEqual(putResponse.Id, 1);
 		}
@@ -35,7 +35,7 @@ namespace Tests.BaseLeaderboardController
 
 				response.EnsureSuccessStatusCode();
 
-				var putResponse = await response.Content.ReadFromJsonAsync<PutResponse>();
+				var putResponse = await response.Content.ReadFromJsonAsync<PostResponse>();
 				
 				Assert.True(putResponse.Faulted);
 				Assert.AreEqual(putResponse.ErrorMessage, "Posted score is lower than the highest posted score by user");
