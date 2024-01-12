@@ -2,5 +2,5 @@
 
 namespace Leaderboard.Responses
 {
-	public record GetResponse(LeaderboardEntry[] Entries);
+	public record GetResponse<TEntry>(TEntry[] Entries);
 }

@@ -1,10 +1,8 @@
 using System.Data.Common;
-using Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,11 +24,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>((container, options) =>
+/*builder.Services.AddDbContext<AppDbContext>((container, options) =>
 {
     var connection = container.GetRequiredService<DbConnection>();
     options.UseSqlite(connection);
-});
+});*/
 
 var app = builder.Build();
 

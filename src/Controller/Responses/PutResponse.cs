@@ -1,4 +1,7 @@
 ﻿namespace Leaderboard.Responses
 {
-	public record PutResponse(int Id);
+	public record PutResponse
+	{
+		public int Id { get; set; }
+	}
 }
