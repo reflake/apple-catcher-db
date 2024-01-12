@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Castle.Components.DictionaryAdapter.Xml;
 using Database;
 using Leaderboard.Responses;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -35,6 +36,22 @@ namespace Tests.BaseLeaderboardController
 				var expected = new[] { user4, user3, user2 };
 			
 				CollectionAssert.AreEquivalent(expected, entries);
+			}
+		}
+
+		[Test]
+		public async Task Client_Should_Get_Concrete_leaderboard_entry()
+		{
+			using (var contextProvider = GetContextProvider())
+			{
+				var context = contextProvider.Context;
+				var expectedEntry = await PushEntryAsync(context, 33, 1);
+
+				var response = await _client.GetAsync($"BaseLeaderboard/{1}");
+				var data = await response.Content.ReadFromJsonAsync<GetResponse<TestLeaderboardEntry>>();
+				var actualEntry = data.Entry;
+				
+				Assert.AreEqual(expectedEntry, actualEntry);
 			}
 		}
 	}
