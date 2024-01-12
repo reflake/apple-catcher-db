@@ -50,7 +50,7 @@ namespace Leaderboard
 					return Ok(new PostResponse
 					{
 						Faulted = true,
-						ErrorMessage = "Posted score is lower than the highest posted score by user"
+						ErrorMessage = "The posted score must be higher than the user's previously highest posted score"
 					});
 				}
 			}
