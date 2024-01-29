@@ -2,8 +2,8 @@
 {
 	public interface ILeaderboardEntry
 	{
-		int Id { get; }
-		int Scores { get; }
-		int UserId { get; }
+		int Id { get; set; }
+		int Scores { get; set; }
+		int UserId { get; set; }
 	}
 }
