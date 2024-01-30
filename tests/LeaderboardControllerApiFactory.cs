@@ -28,7 +28,7 @@ namespace Tests
 				// Remove default database context
 				var dbContextDescriptor = services.SingleOrDefault(
 					d => d.ServiceType ==
-					     typeof(DbContextOptions<AppDbContext<TestLeaderboardEntry>>));
+					     typeof(DbContextOptions<AppDbContext>));
 
 				services.Remove(dbContextDescriptor);
 
@@ -39,7 +39,7 @@ namespace Tests
 				services.Remove(dbConnectionDescriptor);
 				
 				// Create open NpgsqlConnection
-				services.AddSingleton<DbConnection>(container =>
+				services.AddSingleton<DbConnection>(_ =>
 				{
 					var connection = new NpgsqlConnection(_postgres.GetConnectionString());
 					connection.Open();
@@ -47,7 +47,7 @@ namespace Tests
 					return connection;
 				});
 				
-				services.AddDbContext<AppDbContext<TestLeaderboardEntry>>((container, options) =>
+				services.AddDbContext<AppDbContext>((container, options) =>
 				{
 					var connection = container.GetRequiredService<DbConnection>();
 					options.UseNpgsql(connection);

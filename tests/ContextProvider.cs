@@ -4,8 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Tests
 {
-	public record ContextProvider<TEntry>(IServiceScope Scope, AppDbContext<TEntry> Context) : IDisposable
-		where TEntry : class
+	public record ContextProvider(IServiceScope Scope, AppDbContext Context) : IDisposable
 	{
 		public void Dispose()
 		{

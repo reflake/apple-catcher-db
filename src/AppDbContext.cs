@@ -1,16 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Database
 {
-	public class AppDbContext<TEntry> : IdentityDbContext
-		where TEntry : class
+	public class AppDbContext : IdentityDbContext<UserEntry>
 	{
-		public AppDbContext(DbContextOptions<AppDbContext<TEntry>> options) : base(options)
+		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
 		{
 			Database.EnsureCreated();
 		}
 		
-		public DbSet<TEntry> LeaderboardEntries { get; set; }
+		public DbSet<LeaderboardEntry> LeaderboardEntries { get; set; }
 	}
 }

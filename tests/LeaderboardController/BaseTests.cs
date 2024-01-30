@@ -1,9 +1,10 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Database;
+using Entities;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Tests.BaseLeaderboardController
+namespace Tests.LeaderboardController
 {
 	public abstract class BaseTests
 	{
@@ -27,24 +28,26 @@ namespace Tests.BaseLeaderboardController
 			await _factory.DisposeDatabaseAsync();
 			await _factory.DisposeAsync();
 		}
-		protected TestLeaderboardEntry CreateEntry(int scores, int uid) => new () { Scores = scores, UserId = uid };
+		
+		protected LeaderboardEntry CreateEntry(int scores, int uid) => new () { Scores = scores, UserId = uid };
 
-		protected async Task<TestLeaderboardEntry> PushEntryAsync(AppDbContext<TestLeaderboardEntry> context, int scores, int uid)
+		protected async Task<LeaderboardEntry> PushEntryAsync(AppDbContext context, int scores, int uid)
 		{
 			var entry = CreateEntry(scores, uid);
 			
 			entry = (await context.LeaderboardEntries.AddAsync(entry)).Entity;
+			
 			await context.SaveChangesAsync();
 
 			return entry;
 		}
 
-		protected ContextProvider<TestLeaderboardEntry> GetContextProvider()
+		protected ContextProvider GetContextProvider()
 		{
 			var scope = _factory.Services.CreateScope();
-			var context = scope.ServiceProvider.GetRequiredService<AppDbContext<TestLeaderboardEntry>>();
+			var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-			return new ContextProvider<TestLeaderboardEntry>(scope, context);
+			return new ContextProvider(scope, context);
 		}
 	}
 }

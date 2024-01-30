@@ -6,7 +6,7 @@ using Leaderboard.Responses;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Tests.BaseLeaderboardController
+namespace Tests.LeaderboardController
 {
 	[TestFixture]
 	public class GetTests : BaseTests
@@ -30,8 +30,8 @@ namespace Tests.BaseLeaderboardController
 			
 				var queryString = queryBuilder.ToQueryString();
 
-				var response = await _client.GetAsync("BaseLeaderboard" + queryString.ToUriComponent());
-				var data = await response.Content.ReadFromJsonAsync<GetResponse<TestLeaderboardEntry>>();
+				var response = await _client.GetAsync("Leaderboard" + queryString.ToUriComponent());
+				var data = await response.Content.ReadFromJsonAsync<GetResponse>();
 				var entries = data.Entries;
 				var expected = new[] { user4, user3, user2 };
 			
@@ -47,8 +47,8 @@ namespace Tests.BaseLeaderboardController
 				var context = contextProvider.Context;
 				var expectedEntry = await PushEntryAsync(context, 33, 500);
 
-				var response = await _client.GetAsync($"BaseLeaderboard/{expectedEntry.Id}");
-				var data = await response.Content.ReadFromJsonAsync<GetResponse<TestLeaderboardEntry>>();
+				var response = await _client.GetAsync($"Leaderboard/{expectedEntry.Id}");
+				var data = await response.Content.ReadFromJsonAsync<GetResponse>();
 				var actualEntry = data.Entry;
 				
 				Assert.AreEqual(expectedEntry, actualEntry);

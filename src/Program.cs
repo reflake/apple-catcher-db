@@ -2,6 +2,7 @@ using System.Data.Common;
 using Database;
 using Entities;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,11 +28,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext<LeaderboardEntry>>((container, options) =>
+builder.Services.AddDbContext<AppDbContext>((container, options) =>
 {
     var connection = container.GetRequiredService<DbConnection>();
     options.UseSqlite(connection);
 });
+
+builder.Services.AddIdentity<UserEntry, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 

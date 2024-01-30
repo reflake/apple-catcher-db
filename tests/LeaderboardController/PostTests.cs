@@ -4,7 +4,7 @@ using Database;
 using Leaderboard.Responses;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Tests.BaseLeaderboardController
+namespace Tests.LeaderboardController
 {
 	public class PostTests : BaseTests
 	{
@@ -12,7 +12,7 @@ namespace Tests.BaseLeaderboardController
 		public async Task Client_Should_Post_One_entry()
 		{
 			var content = JsonContent.Create(CreateEntry(200, 100));
-			var response = await _client.PostAsync("BaseLeaderboard", content);
+			var response = await _client.PostAsync("Leaderboard", content);
 
 			response.EnsureSuccessStatusCode();
 
@@ -31,7 +31,7 @@ namespace Tests.BaseLeaderboardController
 				PushEntryAsync(context, 50, 1);
 
 				var content = JsonContent.Create(CreateEntry(10, 1));
-				var response = await _client.PostAsync("BaseLeaderboard", content);
+				var response = await _client.PostAsync("Leaderboard", content);
 
 				response.EnsureSuccessStatusCode();
 

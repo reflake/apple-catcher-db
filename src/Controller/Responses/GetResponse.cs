@@ -1,12 +1,13 @@
 ﻿using System.Text.Json.Serialization;
+using Entities;
 
 namespace Leaderboard.Responses
 {
-	public record GetResponse<TEntry> where TEntry : class
+	public record GetResponse
 	{
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-		public TEntry Entry { get; set; } = null;
+		public LeaderboardEntry Entry { get; set; } = null;
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-		public TEntry[] Entries { get; set; } = null;
+		public LeaderboardEntry[] Entries { get; set; } = null;
 	}
 }
