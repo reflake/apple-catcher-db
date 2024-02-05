@@ -12,12 +12,13 @@ namespace Entities
 		public int Scores { get; set; }
 		public int UserId { get; set;  }
 		public DateTime DateTime { get; set; }
+		public string Nickname { get; set; } = string.Empty;
 
 		public bool Equals(LeaderboardEntry? other)
 		{
 			if (ReferenceEquals(null, other)) return false;
 			if (ReferenceEquals(this, other)) return true;
-			return Id == other.Id && Scores == other.Scores && UserId == other.UserId && DateTime.Equals(other.DateTime);
+			return Id == other.Id && Scores == other.Scores && UserId == other.UserId && DateTime.Equals(other.DateTime) && Nickname == other.Nickname;
 		}
 
 		public override bool Equals(object? obj)
