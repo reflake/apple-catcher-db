@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <RootNamespace>ball_catcher_db</RootNamespace>
+    <RootNamespace>AppleCatcher</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

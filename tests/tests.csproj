@@ -28,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\ball-catcher-db.csproj" />
+      <ProjectReference Include="..\src\apple-catcher-db.csproj" />
     </ItemGroup>
 
 </Project>

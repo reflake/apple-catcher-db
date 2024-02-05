@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ball-catcher-db", "src\ball-catcher-db.csproj", "{488B4A0A-F7D6-47F6-AA17-38EB31EF70CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apple-catcher-db", "src\apple-catcher-db.csproj", "{488B4A0A-F7D6-47F6-AA17-38EB31EF70CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{81396F71-E3F8-470D-BE48-BAD26B18FC5C}"
 EndProject
