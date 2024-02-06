@@ -11,7 +11,7 @@ namespace Tests.LeaderboardController
 		[Test]
 		public async Task Client_Should_Post_One_entry()
 		{
-			var content = JsonContent.Create(CreateEntry(200, 100));
+			var content = JsonContent.Create(CreateEntry(200, "100"));
 			var response = await _client.PostAsync("Leaderboard", content);
 
 			response.EnsureSuccessStatusCode();
@@ -28,9 +28,9 @@ namespace Tests.LeaderboardController
 			{
 				var context = contextProvider.Context;
 
-				PushEntryAsync(context, 50, 1);
+				PushEntryAsync(context, 50, "1");
 
-				var content = JsonContent.Create(CreateEntry(10, 1));
+				var content = JsonContent.Create(CreateEntry(10, "1"));
 				var response = await _client.PostAsync("Leaderboard", content);
 
 				response.EnsureSuccessStatusCode();

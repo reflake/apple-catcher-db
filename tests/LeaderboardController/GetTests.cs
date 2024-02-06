@@ -18,11 +18,11 @@ namespace Tests.LeaderboardController
 			{
 				var context = contextProvider.Context;
 				
-				var user1 = await PushEntryAsync(context, 20, 1100);
-				var user2 = await PushEntryAsync(context, 57, 1200);
-				var user3 = await PushEntryAsync(context, 100, 1300);
-				var user4 = await PushEntryAsync(context, 157, 1400);
-				var user5 = await PushEntryAsync(context, 47, 1500);
+				var user1 = await PushEntryAsync(context, 20, "1100");
+				var user2 = await PushEntryAsync(context, 57, "1200");
+				var user3 = await PushEntryAsync(context, 100, "1300");
+				var user4 = await PushEntryAsync(context, 157, "1400");
+				var user5 = await PushEntryAsync(context, 47, "1500");
 			
 				var queryBuilder = new QueryBuilder();
 				queryBuilder.Add("count", "3");
@@ -45,7 +45,7 @@ namespace Tests.LeaderboardController
 			using (var contextProvider = GetContextProvider())
 			{
 				var context = contextProvider.Context;
-				var expectedEntry = await PushEntryAsync(context, 33, 500);
+				var expectedEntry = await PushEntryAsync(context, 33, "500");
 
 				var response = await _client.GetAsync($"Leaderboard/{expectedEntry.Id}");
 				var data = await response.Content.ReadFromJsonAsync<GetResponse>();

@@ -12,5 +12,16 @@ namespace Database
 		}
 		
 		public DbSet<LeaderboardEntry> LeaderboardEntries { get; set; }
+
+		protected override void OnModelCreating(ModelBuilder builder)
+		{
+			base.OnModelCreating(builder);
+
+			/*builder.Entity<UserEntry>()
+				.HasMany(e => e.LeaderboardEntries)
+				.WithOne(e => e.User)
+				.HasForeignKey(e => e.UserId)
+				.HasPrincipalKey(e => e.Id);*/
+		}
 	}
 }

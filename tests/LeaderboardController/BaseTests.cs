@@ -29,9 +29,9 @@ namespace Tests.LeaderboardController
 			await _factory.DisposeAsync();
 		}
 		
-		protected LeaderboardEntry CreateEntry(int scores, int uid) => new () { Scores = scores, UserId = uid };
+		protected LeaderboardEntry CreateEntry(int scores, string uid) => new () { Scores = scores, UserId = uid };
 
-		protected async Task<LeaderboardEntry> PushEntryAsync(AppDbContext context, int scores, int uid)
+		protected async Task<LeaderboardEntry> PushEntryAsync(AppDbContext context, int scores, string uid)
 		{
 			var entry = CreateEntry(scores, uid);
 			

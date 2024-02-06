@@ -38,20 +38,10 @@ namespace Tests
 
 				services.Remove(dbConnectionDescriptor);
 				
-				// Create open NpgsqlConnection
-				services.AddSingleton<DbConnection>(_ =>
-				{
-					var connection = new NpgsqlConnection(_postgres.GetConnectionString());
-					connection.Open();
-					
-					return connection;
-				});
-				
+				// Create application database context
 				services.AddDbContext<AppDbContext>((container, options) =>
-				{
-					var connection = container.GetRequiredService<DbConnection>();
-					options.UseNpgsql(connection);
-				});
+					options.UseNpgsql(_postgres.GetConnectionString())
+				);
 
 				services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(assembly));
 			});

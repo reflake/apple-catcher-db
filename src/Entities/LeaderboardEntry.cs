@@ -10,9 +10,11 @@ namespace Entities
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 		public int Scores { get; set; }
-		public int UserId { get; set;  }
 		public DateTime DateTime { get; set; }
 		public string Nickname { get; set; } = string.Empty;
+
+		public string? UserId { get; set; }
+
 
 		public bool Equals(LeaderboardEntry? other)
 		{
@@ -31,7 +33,7 @@ namespace Entities
 
 		public override int GetHashCode()
 		{
-			return HashCode.Combine(Id, Scores, UserId, DateTime);
+			return HashCode.Combine(Id, Scores, UserId, DateTime, Nickname);
 		}
 
 		public static bool operator ==(LeaderboardEntry? left, LeaderboardEntry? right)
