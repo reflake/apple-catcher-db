@@ -25,6 +25,29 @@
     <_ContentIncludedByDefault Remove="tests\obj\project.assets.json" />
     <_ContentIncludedByDefault Remove="tests\obj\project.packagespec.json" />
     <_ContentIncludedByDefault Remove="tests\obj\tests.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="Entities\obj\Entities.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="Entities\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="Entities\obj\project.packagespec.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Entities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Entities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Entities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Entities\Entities.csproj" />
   </ItemGroup>
 
 </Project>
