@@ -22,7 +22,7 @@ namespace AppleCatcher.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Entities.LeaderboardEntry", b =>
+            modelBuilder.Entity("Entities.Record", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,20 +40,20 @@ namespace AppleCatcher.Migrations
                     b.Property<int>("Scores")
                         .HasColumnType("integer");
 
-                    b.Property<string>("UserEntryId")
-                        .HasColumnType("text");
+                    b.Property<int>("Time")
+                        .HasColumnType("integer");
 
                     b.Property<string>("UserId")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserEntryId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("LeaderboardEntries");
                 });
 
-            modelBuilder.Entity("Entities.UserEntry", b =>
+            modelBuilder.Entity("Entities.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -252,11 +252,11 @@ namespace AppleCatcher.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.LeaderboardEntry", b =>
+            modelBuilder.Entity("Entities.Record", b =>
                 {
-                    b.HasOne("Entities.UserEntry", null)
+                    b.HasOne("Entities.User", null)
                         .WithMany("LeaderboardEntries")
-                        .HasForeignKey("UserEntryId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -270,7 +270,7 @@ namespace AppleCatcher.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Entities.UserEntry", null)
+                    b.HasOne("Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -279,7 +279,7 @@ namespace AppleCatcher.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Entities.UserEntry", null)
+                    b.HasOne("Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -294,7 +294,7 @@ namespace AppleCatcher.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.UserEntry", null)
+                    b.HasOne("Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -303,14 +303,14 @@ namespace AppleCatcher.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Entities.UserEntry", null)
+                    b.HasOne("Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Entities.UserEntry", b =>
+            modelBuilder.Entity("Entities.User", b =>
                 {
                     b.Navigation("LeaderboardEntries");
                 });

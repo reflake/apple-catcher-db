@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Database
 {
-	public class AppDbContext : IdentityDbContext<UserEntry>
+	public class AppDbContext : IdentityDbContext<User>
 	{
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
 		{
 			Database.EnsureCreated();
 		}
 		
-		public DbSet<LeaderboardEntry> LeaderboardEntries { get; set; }
+		public DbSet<Record> LeaderboardEntries { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{

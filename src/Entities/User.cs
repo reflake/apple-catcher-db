@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 namespace Entities
 {
 	[PrimaryKey("Id")]
-	public class UserEntry : IdentityUser
+	public class User : IdentityUser
 	{
 		public DateTime CreationDate { get; set; }
-		public ICollection<LeaderboardEntry> LeaderboardEntries { get; }
+		public ICollection<Record> LeaderboardEntries { get; }
 	}
 }

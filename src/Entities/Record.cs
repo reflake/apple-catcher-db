@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Entities
 {
 	[PrimaryKey("Id")]
-	public class LeaderboardEntry : IEquatable<LeaderboardEntry>
+	public class Record : IEquatable<Record>
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace Entities
 		public string? UserId { get; set; }
 
 
-		public bool Equals(LeaderboardEntry? other)
+		public bool Equals(Record? other)
 		{
 			if (ReferenceEquals(null, other)) return false;
 			if (ReferenceEquals(this, other)) return true;
@@ -29,7 +29,7 @@ namespace Entities
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
 			if (obj.GetType() != this.GetType()) return false;
-			return Equals((LeaderboardEntry)obj);
+			return Equals((Record)obj);
 		}
 
 		public override int GetHashCode()
@@ -37,12 +37,12 @@ namespace Entities
 			return HashCode.Combine(Id, Scores, UserId, DateTime, Nickname);
 		}
 
-		public static bool operator ==(LeaderboardEntry? left, LeaderboardEntry? right)
+		public static bool operator ==(Record? left, Record? right)
 		{
 			return Equals(left, right);
 		}
 
-		public static bool operator !=(LeaderboardEntry? left, LeaderboardEntry? right)
+		public static bool operator !=(Record? left, Record? right)
 		{
 			return !Equals(left, right);
 		}

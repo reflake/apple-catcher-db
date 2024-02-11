@@ -165,17 +165,17 @@ namespace AppleCatcher.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Scores = table.Column<int>(type: "integer", nullable: false),
+                    Time = table.Column<int>(type: "integer", nullable: false),
                     DateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Nickname = table.Column<string>(type: "text", nullable: false),
-                    UserId = table.Column<string>(type: "text", nullable: true),
-                    UserEntryId = table.Column<string>(type: "text", nullable: true)
+                    UserId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LeaderboardEntries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LeaderboardEntries_AspNetUsers_UserEntryId",
-                        column: x => x.UserEntryId,
+                        name: "FK_LeaderboardEntries_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 });
@@ -218,9 +218,9 @@ namespace AppleCatcher.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_LeaderboardEntries_UserEntryId",
+                name: "IX_LeaderboardEntries_UserId",
                 table: "LeaderboardEntries",
-                column: "UserEntryId");
+                column: "UserId");
         }
 
         /// <inheritdoc />

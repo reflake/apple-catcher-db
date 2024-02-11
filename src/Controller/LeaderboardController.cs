@@ -40,7 +40,7 @@ namespace Leaderboard
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> PostLeaderboardEntry(LeaderboardEntry newEntry)
+		public async Task<IActionResult> PostLeaderboardEntry(Record newEntry)
 		{
 			// Take a look if there's already entry of same user with higher score
 			if (await _dbContext.LeaderboardEntries.AnyAsync(dbEntry => dbEntry.UserId == newEntry.UserId))
